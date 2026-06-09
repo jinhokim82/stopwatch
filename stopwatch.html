@@ -10,7 +10,7 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(160deg, #f8e0ff 0%, #ffd6f0 40%, #dce8ff 100%);
+      background: linear-gradient(160deg, #ffe8f5 0%, #fff0e0 50%, #ffe8f5 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -18,337 +18,319 @@
       overflow: hidden;
     }
 
-    .hearts-bg {
+    /* 배경 파티클 */
+    .bg-layer {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
     }
 
-    .heart-float {
+    .bg-item {
       position: absolute;
-      bottom: -40px;
+      bottom: -50px;
       animation: floatUp linear infinite;
-      opacity: 0.45;
+      opacity: 0.4;
     }
 
     @keyframes floatUp {
-      0%   { transform: translateY(0) rotate(-10deg); opacity: 0.45; }
-      100% { transform: translateY(-110vh) rotate(10deg); opacity: 0; }
+      0%   { transform: translateY(0) scale(1); opacity: 0.4; }
+      100% { transform: translateY(-115vh) scale(0.8); opacity: 0; }
     }
 
-    .container {
+    /* 메인 카드 */
+    .card {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 20px 24px 28px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 40px;
-      box-shadow: 0 8px 40px rgba(180, 100, 220, 0.25);
-      backdrop-filter: blur(12px);
-      border: 3px solid rgba(220,180,255,0.6);
-      min-width: 340px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 48px;
+      box-shadow: 0 10px 50px rgba(255,150,180,0.28), 0 2px 12px rgba(255,200,220,0.3);
+      backdrop-filter: blur(14px);
+      border: 3px solid rgba(255,210,230,0.7);
+      padding: 20px 28px 28px;
+      min-width: 350px;
     }
 
-    /* 다이아나핑 SVG */
-    .diana-wrap {
+    /* 캐릭터 영역 */
+    .char-area {
       display: flex;
       justify-content: center;
-      margin-bottom: 4px;
-      animation: floatChar 3s ease-in-out infinite;
+      margin-bottom: 6px;
+      animation: charBob 2.6s ease-in-out infinite;
     }
 
-    @keyframes floatChar {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-10px); }
+    @keyframes charBob {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50%       { transform: translateY(-10px) rotate(1deg); }
     }
 
     h1 {
-      font-size: 1.35rem;
-      color: #9933cc;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 0 #dbb0ff;
-      letter-spacing: 0.08em;
+      font-size: 1.4rem;
+      color: #e8006a;
+      margin-bottom: 18px;
+      text-shadow: 1px 2px 0 #ffbbcc;
+      letter-spacing: 0.1em;
     }
 
-    .clock-ring {
+    /* 링 */
+    .ring-wrap {
       position: relative;
       width: 250px;
       height: 250px;
-      margin: 0 auto 24px;
+      margin: 0 auto 22px;
     }
 
-    .clock-ring svg.ring-svg {
+    .ring-wrap > svg {
       transform: rotate(-90deg);
-      filter: drop-shadow(0 0 10px rgba(180,80,240,0.35));
+      filter: drop-shadow(0 0 10px rgba(255,100,160,0.4));
     }
 
-    .ring-bg {
-      fill: none;
-      stroke: #eed6ff;
-      stroke-width: 10;
-    }
+    .ring-bg { fill: none; stroke: #ffe0ee; stroke-width: 10; }
 
-    .ring-progress {
+    .ring-prog {
       fill: none;
-      stroke: url(#dianaGrad);
+      stroke: url(#happyGrad);
       stroke-width: 10;
       stroke-linecap: round;
       stroke-dasharray: 676;
       stroke-dashoffset: 676;
     }
 
-    .time-display {
+    .time-box {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      line-height: 1;
-      width: 100%;
-    }
-
-    .time-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
-
-    .time-main {
-      font-size: 2.6rem;
-      color: #7700bb;
-      letter-spacing: 0.03em;
-      text-shadow: 1px 1px 0 #dbb0ff;
-    }
-
-    .time-ms { font-size: 1.2rem; color: #bb66ee; margin-top: 4px; }
-
-    .buttons {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      margin-bottom: 24px;
-      align-items: center;
-    }
-
-    button {
-      border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.85);
-      cursor: pointer;
-      font-family: 'Jua', sans-serif;
-      font-size: 0.82rem;
-      transition: transform 0.12s, box-shadow 0.12s;
+      inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1px;
       line-height: 1;
-      width: 70px;
-      height: 70px;
     }
 
+    .time-icon { font-size: 1.5rem; margin-bottom: 4px; }
+
+    .time-main {
+      font-size: 2.7rem;
+      color: #cc0055;
+      text-shadow: 1px 1px 0 #ffbbcc;
+      letter-spacing: 0.03em;
+    }
+
+    .time-ms { font-size: 1.2rem; color: #ff6699; margin-top: 4px; }
+
+    /* 버튼 */
+    .btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    button {
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.9);
+      cursor: pointer;
+      font-family: 'Jua', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: transform 0.12s, box-shadow 0.12s;
+      width: 68px; height: 68px;
+      font-size: 0.82rem;
+      line-height: 1;
+    }
+
+    button:hover { transform: scale(1.07); }
     button:active { transform: scale(0.88) !important; }
-    button .btn-icon { font-size: 1.2rem; }
+    .btn-icon { font-size: 1.15rem; }
 
     #btn-start {
-      background: linear-gradient(135deg, #cc66ff, #8800cc);
+      width: 82px; height: 82px;
+      background: linear-gradient(135deg, #ff80aa, #ff0066);
       color: #fff;
-      box-shadow: 0 4px 18px rgba(150,0,220,0.4);
-      width: 84px;
-      height: 84px;
+      box-shadow: 0 5px 20px rgba(255,0,100,0.4);
       font-size: 0.9rem;
     }
 
     #btn-start.running {
-      background: linear-gradient(135deg, #ff88cc, #ee2299);
-      box-shadow: 0 4px 18px rgba(220,0,130,0.4);
+      background: linear-gradient(135deg, #ffaa55, #ff5500);
+      box-shadow: 0 5px 20px rgba(255,100,0,0.4);
     }
 
     #btn-lap {
-      background: linear-gradient(135deg, #ffccee, #ffaadd);
-      color: #aa0066;
-      box-shadow: 0 4px 12px rgba(255,120,200,0.3);
+      background: linear-gradient(135deg, #ffddee, #ffbbdd);
+      color: #cc0055;
+      box-shadow: 0 4px 14px rgba(255,100,160,0.25);
     }
 
     #btn-reset {
-      background: linear-gradient(135deg, #ddb0ff, #bb88ee);
-      color: #550088;
-      box-shadow: 0 4px 12px rgba(180,100,255,0.3);
+      background: linear-gradient(135deg, #ffeecc, #ffdd99);
+      color: #aa6600;
+      box-shadow: 0 4px 14px rgba(255,180,50,0.25);
     }
 
+    /* 랩 */
     .laps {
       width: 100%;
-      max-height: 190px;
+      max-height: 185px;
       overflow-y: auto;
-      border-radius: 16px;
+      border-radius: 18px;
     }
 
     .laps::-webkit-scrollbar { width: 4px; }
-    .laps::-webkit-scrollbar-thumb { background: #cc99ff; border-radius: 2px; }
+    .laps::-webkit-scrollbar-thumb { background: #ffaacc; border-radius: 2px; }
 
-    .lap-item {
+    .lap-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 8px 14px;
-      border-bottom: 1px dashed #eed6ff;
-      font-size: 0.87rem;
-      animation: popIn 0.25s cubic-bezier(.34,1.56,.64,1);
-      color: #770099;
-      background: rgba(255,255,255,0.5);
+      border-bottom: 1px dashed #ffe0ee;
+      font-size: 0.86rem;
+      color: #cc3366;
+      background: rgba(255,255,255,0.55);
+      animation: popIn 0.22s cubic-bezier(.34,1.56,.64,1);
     }
 
-    .lap-item:first-child { border-top: 1px dashed #eed6ff; }
-    .lap-num  { color: #aa00cc; font-size: 0.88rem; min-width: 66px; text-align: left; }
-    .lap-split { color: #bb88cc; min-width: 90px; text-align: center; font-size: 0.78rem; }
+    .lap-row:first-child { border-top: 1px dashed #ffe0ee; border-radius: 14px 14px 0 0; }
+
+    .lap-num   { color: #ff3377; min-width: 66px; text-align: left; font-size: 0.88rem; }
+    .lap-split { color: #cc8899; min-width: 90px; text-align: center; font-size: 0.78rem; }
     .lap-time  { min-width: 90px; text-align: right; }
-    .lap-item.best  .lap-time { color: #22bb77; }
-    .lap-item.worst .lap-time { color: #ee4466; }
+    .lap-row.best  .lap-time { color: #22bb66; }
+    .lap-row.worst .lap-time { color: #ff4455; }
 
     @keyframes popIn {
-      from { opacity: 0; transform: scale(0.82); }
-      to   { opacity: 1; transform: scale(1); }
+      from { opacity:0; transform:scale(0.82); }
+      to   { opacity:1; transform:scale(1); }
     }
 
+    /* 스파클 */
     .sparkle {
       position: fixed;
       pointer-events: none;
-      font-size: 1.1rem;
-      animation: sparkleAnim 0.9s ease forwards;
+      animation: sparkOut 0.85s ease forwards;
       z-index: 999;
+      font-size: 1.1rem;
     }
 
-    @keyframes sparkleAnim {
-      0%   { transform: translate(0,0) scale(1); opacity: 1; }
-      100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+    @keyframes sparkOut {
+      0%   { transform:translate(0,0) scale(1); opacity:1; }
+      100% { transform:translate(var(--dx),var(--dy)) scale(0); opacity:0; }
     }
   </style>
 </head>
 <body>
 
-<div class="hearts-bg" id="heartsBg"></div>
+<div class="bg-layer" id="bgLayer"></div>
 
-<div class="container">
+<div class="card">
 
-  <!-- 다이아나핑 SVG 캐릭터 -->
-  <div class="diana-wrap">
-    <svg id="dianaSvg" xmlns="http://www.w3.org/2000/svg" width="130" height="150" viewBox="0 0 130 150">
-      <!-- 날개 (뒤) -->
-      <ellipse cx="22" cy="90" rx="18" ry="28" fill="#e8ccff" opacity="0.85" transform="rotate(-30 22 90)"/>
-      <ellipse cx="108" cy="90" rx="18" ry="28" fill="#e8ccff" opacity="0.85" transform="rotate(30 108 90)"/>
-      <ellipse cx="18" cy="108" rx="12" ry="18" fill="#dbb0ff" opacity="0.75" transform="rotate(-20 18 108)"/>
-      <ellipse cx="112" cy="108" rx="12" ry="18" fill="#dbb0ff" opacity="0.75" transform="rotate(20 112 108)"/>
+  <!-- 해피핑 SVG 캐릭터 -->
+  <div class="char-area">
+    <svg id="charSvg" xmlns="http://www.w3.org/2000/svg" width="150" height="140" viewBox="0 0 150 140">
 
-      <!-- 몸통 -->
-      <ellipse cx="65" cy="115" rx="24" ry="20" fill="#cc66ff"/>
-      <!-- 드레스 -->
-      <path d="M41 112 Q45 140 65 145 Q85 140 89 112 Q75 122 65 122 Q55 122 41 112Z" fill="#bb44ee"/>
-      <!-- 드레스 레이스 -->
-      <path d="M42 118 Q55 128 65 126 Q75 128 88 118" fill="none" stroke="#eeaaff" stroke-width="2" stroke-linecap="round"/>
-      <!-- 드레스 하트 장식 -->
-      <path d="M62 132 C62 130 60 128 58 130 C56 132 58 135 62 138 C66 135 68 132 66 130 C64 128 62 130 62 132Z" fill="#ff88cc"/>
+      <!-- 날개 -->
+      <ellipse cx="20" cy="75" rx="20" ry="30" fill="#ffccee" opacity="0.8" transform="rotate(-35 20 75)"/>
+      <ellipse cx="130" cy="75" rx="20" ry="30" fill="#ffccee" opacity="0.8" transform="rotate(35 130 75)"/>
+      <ellipse cx="15" cy="95" rx="12" ry="18" fill="#ffaadd" opacity="0.7" transform="rotate(-20 15 95)"/>
+      <ellipse cx="135" cy="95" rx="12" ry="18" fill="#ffaadd" opacity="0.7" transform="rotate(20 135 95)"/>
+      <!-- 날개 광택 -->
+      <ellipse cx="14" cy="68" rx="5" ry="9" fill="white" opacity="0.45" transform="rotate(-35 14 68)"/>
+      <ellipse cx="136" cy="68" rx="5" ry="9" fill="white" opacity="0.45" transform="rotate(35 136 68)"/>
 
-      <!-- 팔 -->
-      <ellipse cx="40" cy="108" rx="7" ry="12" fill="#ffe0d0" transform="rotate(20 40 108)"/>
-      <ellipse cx="90" cy="108" rx="7" ry="12" fill="#ffe0d0" transform="rotate(-20 90 108)"/>
-      <!-- 손 -->
-      <circle cx="34" cy="116" r="6" fill="#ffe0d0"/>
-      <circle cx="96" cy="116" r="6" fill="#ffe0d0"/>
+      <!-- 몸통 (하트형) -->
+      <!-- 하트 몸 -->
+      <path d="M75 130 C40 110 20 90 20 70 C20 50 35 42 50 48 C58 51 65 58 75 65
+               C85 58 92 51 100 48 C115 42 130 50 130 70 C130 90 110 110 75 130Z"
+            fill="#ff6699"/>
+      <!-- 몸통 하이라이트 -->
+      <path d="M50 55 C55 50 65 52 70 60" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
 
-      <!-- 목 -->
-      <rect x="59" y="84" width="12" height="10" rx="5" fill="#ffe0d0"/>
+      <!-- 귀 (둥근 토끼귀) -->
+      <ellipse cx="52" cy="32" rx="10" ry="18" fill="#ff88aa" transform="rotate(-10 52 32)"/>
+      <ellipse cx="98" cy="32" rx="10" ry="18" fill="#ff88aa" transform="rotate(10 98 32)"/>
+      <ellipse cx="52" cy="32" rx="6" ry="13" fill="#ffccdd" transform="rotate(-10 52 32)"/>
+      <ellipse cx="98" cy="32" rx="6" ry="13" fill="#ffccdd" transform="rotate(10 98 32)"/>
 
-      <!-- 얼굴 -->
-      <ellipse cx="65" cy="68" rx="30" ry="28" fill="#ffe8d0"/>
-
-      <!-- 귀 -->
-      <ellipse cx="36" cy="62" rx="7" ry="9" fill="#ffe0d0"/>
-      <ellipse cx="94" cy="62" rx="7" ry="9" fill="#ffe0d0"/>
-      <ellipse cx="36" cy="62" rx="4" ry="6" fill="#ffb0cc"/>
-      <ellipse cx="94" cy="62" rx="4" ry="6" fill="#ffb0cc"/>
-
-      <!-- 머리카락 -->
-      <ellipse cx="65" cy="48" rx="30" ry="20" fill="#cc44aa"/>
-      <path d="M35 55 Q30 35 40 25 Q50 15 65 14 Q80 15 90 25 Q100 35 95 55" fill="#cc44aa"/>
-      <!-- 앞머리 -->
-      <path d="M38 58 Q42 42 55 45 Q60 47 65 46 Q70 47 75 45 Q88 42 92 58" fill="#dd55bb"/>
-      <!-- 머리카락 하이라이트 -->
-      <path d="M50 28 Q55 22 65 21" fill="none" stroke="#ee88dd" stroke-width="2.5" stroke-linecap="round"/>
-
-      <!-- 왕관 -->
-      <rect x="44" y="24" width="42" height="10" rx="4" fill="#ffdd00"/>
-      <polygon points="44,24 48,12 54,22" fill="#ffdd00"/>
-      <polygon points="63,24 65,10 67,24" fill="#ffdd00"/>
-      <polygon points="86,24 82,12 76,22" fill="#ffdd00"/>
-      <!-- 왕관 보석 -->
-      <circle cx="48" cy="17" r="3" fill="#ff44aa"/>
-      <circle cx="65" cy="14" r="4" fill="#aa44ff"/>
-      <circle cx="82" cy="17" r="3" fill="#ff44aa"/>
-      <!-- 왕관 테두리 -->
-      <rect x="44" y="24" width="42" height="10" rx="4" fill="none" stroke="#ddaa00" stroke-width="1.2"/>
-      <!-- 왕관 작은 보석들 -->
-      <circle cx="56" cy="29" r="2" fill="#ffaaee"/>
-      <circle cx="65" cy="29" r="2.5" fill="#cc88ff"/>
-      <circle cx="74" cy="29" r="2" fill="#ffaaee"/>
-
-      <!-- 눈썹 -->
-      <path d="M50 57 Q55 53 60 56" fill="none" stroke="#aa3388" stroke-width="2" stroke-linecap="round"/>
-      <path d="M70 56 Q75 53 80 57" fill="none" stroke="#aa3388" stroke-width="2" stroke-linecap="round"/>
-
-      <!-- 눈 (크고 반짝이는) -->
-      <ellipse cx="55" cy="65" rx="10" ry="11" fill="white"/>
-      <ellipse cx="75" cy="65" rx="10" ry="11" fill="white"/>
-      <ellipse cx="55" cy="66" rx="7" ry="8" fill="#6600aa"/>
-      <ellipse cx="75" cy="66" rx="7" ry="8" fill="#6600aa"/>
-      <ellipse cx="55" cy="66" rx="4.5" ry="5" fill="#9900ee"/>
-      <ellipse cx="75" cy="66" rx="4.5" ry="5" fill="#9900ee"/>
-      <!-- 눈 하이라이트 -->
-      <circle cx="51" cy="63" r="2.5" fill="white"/>
-      <circle cx="71" cy="63" r="2.5" fill="white"/>
-      <circle cx="57" cy="68" r="1.2" fill="white" opacity="0.7"/>
-      <circle cx="77" cy="68" r="1.2" fill="white" opacity="0.7"/>
-      <!-- 속눈썹 -->
-      <path d="M45 61 Q47 57 49 60" fill="none" stroke="#6600aa" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M47 58 Q50 55 52 59" fill="none" stroke="#6600aa" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M85 61 Q83 57 81 60" fill="none" stroke="#6600aa" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M83 58 Q80 55 78 59" fill="none" stroke="#6600aa" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- 머리 -->
+      <ellipse cx="75" cy="65" rx="38" ry="36" fill="#ffeeee"/>
 
       <!-- 볼터치 -->
-      <ellipse cx="44" cy="73" rx="9" ry="5" fill="#ffaacc" opacity="0.55"/>
-      <ellipse cx="86" cy="73" rx="9" ry="5" fill="#ffaacc" opacity="0.55"/>
+      <ellipse cx="48" cy="78" rx="12" ry="7" fill="#ffaacc" opacity="0.55"/>
+      <ellipse cx="102" cy="78" rx="12" ry="7" fill="#ffaacc" opacity="0.55"/>
+
+      <!-- 눈썹 -->
+      <path d="M56 55 Q62 51 68 54" fill="none" stroke="#ff4488" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M82 54 Q88 51 94 55" fill="none" stroke="#ff4488" stroke-width="2.2" stroke-linecap="round"/>
+
+      <!-- 눈 -->
+      <ellipse id="eyeL" cx="62" cy="65" rx="10" ry="11" fill="white"/>
+      <ellipse id="eyeR" cx="88" cy="65" rx="10" ry="11" fill="white"/>
+      <ellipse cx="62" cy="66" rx="7" ry="8" fill="#220000"/>
+      <ellipse cx="88" cy="66" rx="7" ry="8" fill="#220000"/>
+      <ellipse cx="62" cy="66" rx="4" ry="5" fill="#ff2266"/>
+      <ellipse cx="88" cy="66" rx="4" ry="5" fill="#ff2266"/>
+      <!-- 눈 하이라이트 -->
+      <circle cx="58" cy="62" r="2.5" fill="white"/>
+      <circle cx="84" cy="62" r="2.5" fill="white"/>
+      <circle cx="65" cy="69" r="1.2" fill="white" opacity="0.7"/>
+      <circle cx="91" cy="69" r="1.2" fill="white" opacity="0.7"/>
+      <!-- 속눈썹 -->
+      <line x1="52" y1="59" x2="55" y2="63" stroke="#ff2266" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="55" y1="56" x2="58" y2="61" stroke="#ff2266" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="98" y1="59" x2="95" y2="63" stroke="#ff2266" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="95" y1="56" x2="92" y2="61" stroke="#ff2266" stroke-width="1.8" stroke-linecap="round"/>
 
       <!-- 코 -->
-      <ellipse cx="65" cy="74" rx="3" ry="2" fill="#ffbbaa" opacity="0.6"/>
+      <ellipse cx="75" cy="75" rx="3.5" ry="2.5" fill="#ffaaaa" opacity="0.7"/>
 
       <!-- 입 -->
-      <path d="M57 80 Q65 87 73 80" fill="none" stroke="#ee5599" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M60 80 Q65 84 70 80" fill="#ff88bb" opacity="0.4"/>
+      <path d="M64 82 Q75 91 86 82" fill="none" stroke="#ff4488" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M67 82 Q75 88 83 82" fill="#ff88aa" opacity="0.35"/>
 
-      <!-- 반짝이 장식 -->
-      <text x="100" y="50" font-size="12" opacity="0.8">✨</text>
-      <text x="10" y="55" font-size="10" opacity="0.7">⭐</text>
-      <text x="105" y="75" font-size="9" opacity="0.6">💜</text>
+      <!-- 이마 하트 -->
+      <path d="M75 45 C75 43 73 41 71 43 C69 45 71 48 75 51 C79 48 81 45 79 43 C77 41 75 43 75 45Z"
+            fill="#ff3377"/>
+
+      <!-- 꼬리 하트 -->
+      <path d="M75 125 C75 122 72 119 69 122 C66 125 69 129 75 133 C81 129 84 125 81 122 C78 119 75 122 75 125Z"
+            fill="#ff88aa"/>
+
+      <!-- 반짝이 -->
+      <text x="115" y="45" font-size="13">✨</text>
+      <text x="16"  y="42" font-size="11">⭐</text>
+      <text x="118" y="110" font-size="10">💗</text>
     </svg>
   </div>
 
-  <h1>💜 다이아나핑과 함께! 💜</h1>
+  <h1>💖 캐치! 티니핑 💖</h1>
 
-  <div class="clock-ring">
-    <svg class="ring-svg" width="250" height="250" viewBox="0 0 250 250">
+  <!-- 링 -->
+  <div class="ring-wrap">
+    <svg width="250" height="250" viewBox="0 0 250 250">
       <defs>
-        <linearGradient id="dianaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stop-color="#cc66ff"/>
-          <stop offset="100%" stop-color="#8800cc"/>
+        <linearGradient id="happyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#ff88bb"/>
+          <stop offset="100%" stop-color="#ff0066"/>
         </linearGradient>
       </defs>
-      <circle class="ring-bg" cx="125" cy="125" r="107.5"/>
-      <circle class="ring-progress" id="ring" cx="125" cy="125" r="107.5"/>
+      <circle class="ring-bg"   cx="125" cy="125" r="107.5"/>
+      <circle class="ring-prog" id="ring" cx="125" cy="125" r="107.5"/>
     </svg>
-    <div class="time-display">
-      <span class="time-icon" id="timeIcon">💜</span>
+    <div class="time-box">
+      <span class="time-icon" id="timeIcon">💖</span>
       <div class="time-main" id="display">00:00:00</div>
-      <div class="time-ms" id="display-ms">.00</div>
+      <div class="time-ms"   id="display-ms">.00</div>
     </div>
   </div>
 
-  <div class="buttons">
-    <button id="btn-lap" onclick="lap()">
+  <!-- 버튼 -->
+  <div class="btns">
+    <button id="btn-lap"   onclick="lap()">
       <span class="btn-icon">⭐</span>랩
     </button>
     <button id="btn-start" onclick="toggle()">
@@ -364,147 +346,124 @@
 </div>
 
 <script>
-  let startTime = 0, elapsed = 0, running = false, rafId = null;
-  let lapList = [];
+  let startTime=0, elapsed=0, running=false, rafId=null, lapList=[];
   const RING_FULL = 675.4;
 
-  const displayMain = document.getElementById('display');
-  const displayMs   = document.getElementById('display-ms');
-  const ring        = document.getElementById('ring');
-  const btnStart    = document.getElementById('btn-start');
-  const startIcon   = document.getElementById('startIcon');
-  const startLabel  = document.getElementById('startLabel');
-  const timeIcon    = document.getElementById('timeIcon');
-  const lapsEl      = document.getElementById('laps');
-  const dianaSvg    = document.getElementById('dianaSvg');
+  const elMain  = document.getElementById('display');
+  const elMs    = document.getElementById('display-ms');
+  const elRing  = document.getElementById('ring');
+  const btnStart= document.getElementById('btn-start');
+  const elIcon  = document.getElementById('startIcon');
+  const elLabel = document.getElementById('startLabel');
+  const elTime  = document.getElementById('timeIcon');
+  const elLaps  = document.getElementById('laps');
+  const charSvg = document.getElementById('charSvg');
 
-  // 배경 파티클
-  const floatItems = ['💜','💗','✨','⭐','🌸','💝','👑','🔮'];
-  const bg = document.getElementById('heartsBg');
-  for (let i = 0; i < 20; i++) {
-    const el = document.createElement('div');
-    el.className = 'heart-float';
-    el.textContent = floatItems[Math.floor(Math.random() * floatItems.length)];
-    el.style.left = Math.random() * 100 + 'vw';
-    el.style.animationDuration = (7 + Math.random() * 10) + 's';
-    el.style.animationDelay    = (Math.random() * 12) + 's';
-    el.style.fontSize = (0.7 + Math.random() * 1.1) + 'rem';
-    bg.appendChild(el);
+  /* 배경 파티클 */
+  const floats=['💖','💗','✨','⭐','🌸','💝','🎀','🩷'];
+  const bgEl=document.getElementById('bgLayer');
+  for(let i=0;i<22;i++){
+    const d=document.createElement('div');
+    d.className='bg-item';
+    d.textContent=floats[Math.floor(Math.random()*floats.length)];
+    d.style.left=Math.random()*100+'vw';
+    d.style.animationDuration=(6+Math.random()*11)+'s';
+    d.style.animationDelay=(Math.random()*12)+'s';
+    d.style.fontSize=(0.7+Math.random()*1.2)+'rem';
+    bgEl.appendChild(d);
   }
 
-  // 타이머 중 다이아나핑 눈 깜빡임
-  const icons = ['💜','💙','💜','✨','💜'];
-  let iconIdx = 0;
-  setInterval(() => {
-    if (running) timeIcon.textContent = icons[iconIdx++ % icons.length];
-  }, 500);
+  /* 하트 아이콘 루프 */
+  const hIcons=['💖','💗','💕','💓','🩷'];
+  let hIdx=0;
+  setInterval(()=>{ if(running) elTime.textContent=hIcons[hIdx++%hIcons.length]; },450);
 
-  // 눈 깜빡임
-  setInterval(() => {
-    const eyes = dianaSvg.querySelectorAll('ellipse[rx="10"]');
-    eyes.forEach(e => { e.setAttribute('ry','2'); });
-    setTimeout(() => eyes.forEach(e => { e.setAttribute('ry','11'); }), 120);
-  }, 3500);
+  /* 눈 깜빡임 */
+  setInterval(()=>{
+    const eL=document.getElementById('eyeL'), eR=document.getElementById('eyeR');
+    eL.setAttribute('ry','2'); eR.setAttribute('ry','2');
+    setTimeout(()=>{ eL.setAttribute('ry','11'); eR.setAttribute('ry','11'); },110);
+  },3800);
 
-  function format(ms) {
-    const h  = Math.floor(ms / 3600000);
-    const m  = Math.floor((ms % 3600000) / 60000);
-    const s  = Math.floor((ms % 60000) / 1000);
-    const cs = Math.floor((ms % 1000) / 10);
-    return { main: `${pad(h)}:${pad(m)}:${pad(s)}`, ms: `.${pad(cs)}` };
+  function format(ms){
+    const h=Math.floor(ms/3600000), m=Math.floor((ms%3600000)/60000),
+          s=Math.floor((ms%60000)/1000), cs=Math.floor((ms%1000)/10);
+    return { main:`${pad(h)}:${pad(m)}:${pad(s)}`, ms:`.${pad(cs)}` };
+  }
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function tick(){
+    elapsed=Date.now()-startTime;
+    const {main,ms}=format(elapsed);
+    elMain.textContent=main; elMs.textContent=ms;
+    elRing.style.strokeDashoffset=RING_FULL-(elapsed/1000%60)/60*RING_FULL;
+    rafId=requestAnimationFrame(tick);
   }
 
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function tick() {
-    elapsed = Date.now() - startTime;
-    const { main, ms } = format(elapsed);
-    displayMain.textContent = main;
-    displayMs.textContent   = ms;
-    const seconds = (elapsed / 1000) % 60;
-    ring.style.strokeDashoffset = RING_FULL - (seconds / 60) * RING_FULL;
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function toggle() {
-    if (!running) {
-      startTime = Date.now() - elapsed;
-      running = true;
-      startIcon.textContent  = '⏸';
-      startLabel.textContent = '정지';
-      btnStart.classList.add('running');
-      tick();
+  function toggle(){
+    if(!running){
+      startTime=Date.now()-elapsed; running=true;
+      elIcon.textContent='⏸'; elLabel.textContent='정지';
+      btnStart.classList.add('running'); tick();
     } else {
-      cancelAnimationFrame(rafId);
-      running = false;
-      startIcon.textContent  = '▶';
-      startLabel.textContent = '시작';
-      btnStart.classList.remove('running');
-      timeIcon.textContent = '💜';
+      cancelAnimationFrame(rafId); running=false;
+      elIcon.textContent='▶'; elLabel.textContent='시작';
+      btnStart.classList.remove('running'); elTime.textContent='💖';
     }
     spawnSparkles(btnStart);
   }
 
-  function lap() {
-    if (!running) return;
-    const totalMs = elapsed;
-    const splitMs = elapsed - (lapList.length > 0 ? lapList[lapList.length - 1].totalMs : 0);
-    lapList.push({ totalMs, splitMs });
+  function lap(){
+    if(!running) return;
+    const totalMs=elapsed;
+    const splitMs=elapsed-(lapList.length>0?lapList[lapList.length-1].totalMs:0);
+    lapList.push({totalMs,splitMs});
     renderLaps();
     spawnSparkles(document.getElementById('btn-lap'));
   }
 
-  function reset() {
+  function reset(){
     cancelAnimationFrame(rafId);
-    running = false; elapsed = 0; startTime = 0; lapList = [];
-    displayMain.textContent = '00:00:00';
-    displayMs.textContent   = '.00';
-    ring.style.strokeDashoffset = RING_FULL;
-    startIcon.textContent  = '▶';
-    startLabel.textContent = '시작';
-    timeIcon.textContent   = '💜';
-    btnStart.classList.remove('running');
-    lapsEl.innerHTML = '';
+    running=false; elapsed=0; startTime=0; lapList=[];
+    elMain.textContent='00:00:00'; elMs.textContent='.00';
+    elRing.style.strokeDashoffset=RING_FULL;
+    elIcon.textContent='▶'; elLabel.textContent='시작';
+    elTime.textContent='💖'; btnStart.classList.remove('running');
+    elLaps.innerHTML='';
     spawnSparkles(document.getElementById('btn-reset'));
   }
 
-  function renderLaps() {
-    const splits   = lapList.map(l => l.splitMs);
-    const minSplit = Math.min(...splits);
-    const maxSplit = Math.max(...splits);
-    lapsEl.innerHTML = lapList.slice().reverse().map((l, ri) => {
-      const i   = lapList.length - 1 - ri;
-      const cls = splits.length > 1
-        ? (l.splitMs === minSplit ? 'lap-item best' : l.splitMs === maxSplit ? 'lap-item worst' : 'lap-item')
-        : 'lap-item';
-      const medal = splits.length > 1 && l.splitMs === minSplit ? '🥇' : splits.length > 1 && l.splitMs === maxSplit ? '🐌' : '💜';
-      const { main: tm, ms: tms } = format(l.totalMs);
-      const { main: sm, ms: sms } = format(l.splitMs);
+  function renderLaps(){
+    const splits=lapList.map(l=>l.splitMs);
+    const mn=Math.min(...splits), mx=Math.max(...splits);
+    elLaps.innerHTML=lapList.slice().reverse().map((l,ri)=>{
+      const i=lapList.length-1-ri;
+      const cls=splits.length>1?(l.splitMs===mn?'lap-row best':l.splitMs===mx?'lap-row worst':'lap-row'):'lap-row';
+      const medal=splits.length>1&&l.splitMs===mn?'🥇':splits.length>1&&l.splitMs===mx?'🐌':'💖';
+      const {main:tm,ms:tms}=format(l.totalMs);
+      const {main:sm,ms:sms}=format(l.splitMs);
       return `<div class="${cls}">
-        <span class="lap-num">${medal} 랩 ${i+1}</span>
+        <span class="lap-num">${medal} 랩${i+1}</span>
         <span class="lap-split">${sm}${sms}</span>
         <span class="lap-time">${tm}${tms}</span>
       </div>`;
     }).join('');
   }
 
-  function spawnSparkles(el) {
-    const rect = el.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top  + rect.height / 2;
-    const sparks = ['✨','💜','👑','⭐','🌸','💝'];
-    for (let i = 0; i < 7; i++) {
-      const s = document.createElement('div');
-      s.className = 'sparkle';
-      s.textContent = sparks[Math.floor(Math.random() * sparks.length)];
-      s.style.left = cx + 'px';
-      s.style.top  = cy + 'px';
-      const angle = (Math.random() * 360) * Math.PI / 180;
-      const dist  = 45 + Math.random() * 55;
-      s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
-      s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+  function spawnSparkles(el){
+    const r=el.getBoundingClientRect();
+    const cx=r.left+r.width/2, cy=r.top+r.height/2;
+    const sp=['✨','💖','🌸','⭐','💗','🎀'];
+    for(let i=0;i<7;i++){
+      const s=document.createElement('div');
+      s.className='sparkle';
+      s.textContent=sp[Math.floor(Math.random()*sp.length)];
+      s.style.left=cx+'px'; s.style.top=cy+'px';
+      const a=Math.random()*Math.PI*2, d=45+Math.random()*55;
+      s.style.setProperty('--dx',Math.cos(a)*d+'px');
+      s.style.setProperty('--dy',Math.sin(a)*d+'px');
       document.body.appendChild(s);
-      setTimeout(() => s.remove(), 950);
+      setTimeout(()=>s.remove(),880);
     }
   }
 </script>
